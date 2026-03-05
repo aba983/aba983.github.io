@@ -1,55 +1,148 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>我的第一个个人主页</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f5f5;
-      color: #333;
-    }
-    header {
-      background: #2c3e50;
-      color: #fff;
-      padding: 2rem;
-      text-align: center;
-    }
-    main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 2rem;
-    }
-    a {
-      color: #3498db;
-    }
-    .emoji {
-      font-size: 1.5rem;
-      margin-right: 0.5rem;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一个人生 | 个人主页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        /* 通用卡片样式 */
+        .container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: none; 
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        #home-page { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .avatar {
+            width: 80px; height: 80px;
+            background: #fff; color: #1a1a1a;
+            border-radius: 50%;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 2rem; font-weight: bold;
+            margin: 0 auto 1.5rem;
+        }
+
+        h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .subtitle { font-size: 0.9rem; color: #bdc3c7; margin-bottom: 2rem; line-height: 1.6; }
+
+        /* 按钮样式 */
+        .btn-group { display: flex; flex-direction: column; gap: 1rem; }
+        .btn {
+            padding: 12px 24px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            color: #fff;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .btn:hover { background: #fff; color: #1a1a1a; }
+
+        /* 待开发按钮特殊样式 */
+        .btn-dev { border-style: dashed; opacity: 0.7; }
+
+        .back-btn {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #3498db;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* 施工中动画 */
+        .loader {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1><span class="emoji">👋</span> 你好，我是小明</h1>
-    <p>一个正在学习建站的普通人</p>
-  </header>
-  <main>
-    <h2><span class="emoji">🙋‍♂️</span> 关于我</h2>
-    <p>这里是自我介绍，你可以写自己会什么、想做什么。</p>
-    <h2><span class="emoji">💻</span> 我的项目</h2>
-    <ul>
-      <li><a href="#">项目 1：个人博客（还没做好）</a></li>
-      <li><a href="#">项目 2：在线工具箱（也在构思中）</a></li>
-    </ul>
-    <h2><span class="emoji">📧</span> 联系我</h2>
-    <p>邮箱：xiaoming@example.com（随便写的，别当真）</p>
-  </main>
+
+    <div id="home-page" class="container">
+        <div class="avatar">生</div>
+        <h1>一个人生</h1>
+        <p class="subtitle">“独行者的风景，只有在静默中才能看清。”</p>
+        <div class="btn-group">
+            <button class="btn" onclick="showPage('project-page')">项目展示</button>
+            <button class="btn" onclick="showPage('thought-page')">思想碎片</button>
+            <button class="btn" onclick="showPage('contact-page')">联络渠道</button>
+            <button class="btn btn-dev" onclick="showPage('dev-page')">+ 待开发模块</button>
+        </div>
+    </div>
+
+    <div id="project-page" class="container">
+        <h1>项目展示</h1>
+        <p style="margin: 2rem 0;">目前什么都没有</p>
+        <div class="back-btn" onclick="showPage('home-page')">返回主页</div>
+    </div>
+
+    <div id="thought-page" class="container">
+        <h1>思想碎片</h1>
+        <p style="margin: 2rem 0; font-style: italic;">“这个人思想很深刻”</p>
+        <div class="back-btn" onclick="showPage('home-page')">返回主页</div>
+    </div>
+
+    <div id="contact-page" class="container">
+        <h1>联系我</h1>
+        <p style="font-size: 1.2rem; color: #f1c40f; margin: 20px 0;">onemanlife@example.ph</p>
+        <p class="subtitle">欢迎随时来信</p>
+        <div class="back-btn" onclick="showPage('home-page')">返回主页</div>
+    </div>
+
+    <div id="dev-page" class="container">
+        <div class="loader">⚙️</div>
+        <h1>正在建设中</h1>
+        <p style="margin: 1.5rem 0; color: #95a5a6;">这里将来会放些什么呢？<br>可能是实验室，也可能是日记本。</p>
+        <div class="back-btn" onclick="showPage('home-page')">返回主页</div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.container');
+            pages.forEach(page => page.style.display = 'none');
+            document.getElementById(pageId).style.display = 'block';
+        }
+    </script>
+
 </body>
 </html>
